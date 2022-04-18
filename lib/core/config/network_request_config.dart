@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class NetworkRequestConfig {
-  static const String _baseUrl = 'https://api.themoviedb.org/';
+  static const String _baseUrl = 'http://code.aldipee.com';
   Dio dio = Dio(BaseOptions(baseUrl: _baseUrl));
 
   Future<Map<String, dynamic>> doGet(String endPoint) async {
