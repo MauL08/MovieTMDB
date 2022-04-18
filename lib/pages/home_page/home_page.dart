@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movieapp/pages/detail_page/detail_page.dart';
 import 'package:movieapp/pages/home_page/home_state.dart';
 
 class HomePage extends StatelessWidget {
@@ -59,6 +60,15 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               trailing: const Icon(Icons.arrow_forward),
+                              onTap: () {
+                                Get.to(
+                                  DetailPage(
+                                    movieId:
+                                        state.data.value.results?[index].id ??
+                                            0,
+                                  ),
+                                );
+                              },
                             ),
                           );
                         },
