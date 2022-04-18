@@ -13,23 +13,23 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.green.shade300,
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(12, 32, 12, 32),
-          child: Column(
-            children: [
-              Text(
-                'TMDB MOVIES',
-                style: TextStyle(
-                  color: Colors.blue.shade800,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Obx(
-                () => state.loading.value
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.separated(
+      body: Obx(
+        () => state.loading.value
+            ? const Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(12, 48, 12, 12),
+                  child: Column(
+                    children: [
+                      Text(
+                        'TMDB MOVIES',
+                        style: TextStyle(
+                          color: Colors.blue.shade800,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      ListView.separated(
                         shrinkWrap: true,
                         primary: false,
                         itemBuilder: (context, index) {
@@ -42,9 +42,21 @@ class HomePage extends StatelessWidget {
                               ),
                               title: Text(
                                 state.data.value.results?[index].title ?? '',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              subtitle: Text(
-                                'Rating ${state.data.value.results?[index].voteAverage.toString()}',
+                              subtitle: Container(
+                                margin: const EdgeInsets.only(
+                                  top: 8,
+                                ),
+                                child: Text(
+                                  'Rating ${state.data.value.results?[index].voteAverage.toString()}',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ),
                               trailing: const Icon(Icons.arrow_forward),
                             ),
@@ -57,10 +69,10 @@ class HomePage extends StatelessWidget {
                         },
                         itemCount: state.data.value.results!.length,
                       ),
+                    ],
+                  ),
+                ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }
